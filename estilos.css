@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>La Velada – Página completa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      background: #0a0f1c;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+     .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 15px 25px;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+     .nav-logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #f5d26a;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-menu a {
+      margin-left: 25px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: 1px;
+      transition: 0.2s;
+    }
+
+    .nav-menu a:hover {
+      color: #f5d26a;
+    }
+
+  
+</body>
+</html>
 
