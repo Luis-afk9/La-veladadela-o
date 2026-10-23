@@ -118,3 +118,42 @@ section {
   opacity: 1;
   transform: translateY(0);
 }
+
+.fondo {
+  background-image: url("https://imagenes.elpais.com/resizer/v2/XDE2VTUJQZGA3OOP3K2A4XYAGY.jpg?auth=1afcca38a4fa01640020c2c8a08ba41d8e873c6ab82500478c9872d30151d0fb&width=1200");
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center center; 
+  background-attachment: fixed;
+}
+
+#CuentaAtras {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'VT323', monospace;
+  font-size: 50px;
+  color: #ff9900;
+  background-color: black;
+  padding: 10px 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 153, 0, 0.7);
+  text-align: center;
+}
+
+.info {
+  position: absolute;
+  bottom: 40%; 
+  left: 14%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #f4e0ca;
+  font-family: 'Orbitron', sans-serif; 
+  font-size: 20px;
+  line-height: 1.5;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 15px 25px;
+  border-radius: 10px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7)
+}
