@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxeadores - La Velada VI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-logo">LA VELADA</div>
+
+    <nav class="nav-menu">
+        <a href="index.html">INICIO</a>
+        <a href="combates.html">COMBATES</a>
+        <a href="boxeadores.html">BOXEADORES</a>
+        <a href="Preguntas.html">FAQ</a>
+    </nav>
+</header>
+
+
+<main id="vista-catalogo" class="boxeadores-main">
+
+    <div class="header-boxeadores">
+        <h1>BOXEADORES</h1>
+        <p>LOS 20 CONTENDIENTES DE LA VELADA DEL AÑO VI</p>
+    </div>
+
+    <div class="layout-boxeadores">
+    
+        <aside class="sidebar-filtros">
+            <div class="titulo-filtro">◆ FILTROS ◆</div>
+            
+            <div class="grupo-filtro">
+                <span class="label-filtro">◆ PAÍS</span>
+                <button class="btn-filtro active">TODOS <span>20</span></button>
+                <button class="btn-filtro">🇪🇸 ESPAÑA <span>12</span></button>
+                <button class="btn-filtro">🇦🇷 ARGENTINA <span>4</span></button>
+                <button class="btn-filtro">🇲🇽 MÉXICO <span>2</span></button>
+                <button class="btn-filtro">🇨🇴 COLOMBIA <span>1</span></button>
+                <button class="btn-filtro">🇸🇻 EL SALVADOR <span>1</span></button>
+            </div>
+
+            <div class="grupo-filtro">
+                <span class="label-filtro">◆ GÉNERO</span>
+                <button class="btn-filtro active">TODOS <span>20</span></button>
+                <button class="btn-filtro">FEMENINO <span>10</span></button>
+                <button class="btn-filtro">MASCULINO <span>10</span></button>
+            </div>
+        </aside>
+
+    
+        <section class="contenido-cartelera">
+
+
+            <div class="grid-cartelera-oficial">
+                
+              
+                <div class="pareja-bloque">
+                    <div class="card-luchador" onclick="abrirFicha('fabiana')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 01</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/fabiana-sevillano.avif" alt="Fabiana Sevillano"></div>
+                        <div class="info-card">
+                            <h2>FABIANA SEVILLANO</h2>
+                            <p>🇪🇸 ESPAÑA</p>
+                        </div>
+                    </div>
+                    <div class="badge-vs-flotante">VS</div>
+                    <div class="card-luchador" onclick="abrirFicha('laparce')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 01</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/la-parce.avif" alt="La Parce"></div>
+                        <div class="info-card">
+                            <h2>LA PARCE</h2>
+                            <p>🇨🇴 COLOMBIA</p>
+                        </div>
+                    </div>
+                </div>
+
+              
+                <div class="pareja-bloque">
+                    <div class="card-luchador" onclick="abrirFicha('clersss')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 02</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/clersss.avif" alt="Clersss"></div>
+                        <div class="info-card">
+                            <h2>CLERSSS</h2>
+                            <p>🇪🇸 ESPAÑA</p>
+                        </div>
+                    </div>
+                    <div class="badge-vs-flotante">VS</div>
+                    <div class="card-luchador" onclick="abrirFicha('natalia')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 02</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/natalia-mx.avif" alt="Natalia MX"></div>
+                        <div class="info-card">
+                            <h2>NATALIA MX</h2>
+                            <p>🇲🇽 MÉXICO</p>
+                        </div>
+                    </div>
+                </div>
+
+              
+                <div class="pareja-bloque">
+                    <div class="card-luchador" onclick="abrirFicha('edu')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 03</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/edu-aguirre.avif" alt="Edu Aguirre"></div>
+                        <div class="info-card">
+                            <h2>EDU AGUIRRE</h2>
+                            <p>🇪🇸 ESPAÑA</p>
+                        </div>
+                    </div>
+                    <div class="badge-vs-flotante">VS</div>
+                    <div class="card-luchador" onclick="abrirFicha('gaston')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 03</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/gaston-edul.avif" alt="Gastón Edul"></div>
+                        <div class="info-card">
+                            <h2>GASTÓN EDUL</h2>
+                            <p>🇦🇷 ARGENTINA</p>
+                        </div>
+                    </div>
+                </div>
+
+          
+                <div class="pareja-bloque">
+                    <div class="card-luchador" onclick="abrirFicha('marta')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 04</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/marta-diaz.avif" alt="Marta Díaz"></div>
+                        <div class="info-card">
+                            <h2>MARTA DÍAZ</h2>
+                            <p>🇪🇸 ESPAÑA</p>
+                        </div>
+                    </div>
+                    <div class="badge-vs-flotante">VS</div>
+                    <div class="card-luchador" onclick="abrirFicha('tatiana')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 04</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/tatiana-kaer.avif" alt="Tatiana Käer"></div>
+                        <div class="info-card">
+                            <h2>TATIANA KÄER</h2>
+                            <p>🇪🇸 ESPAÑA</p>
+                        </div>
+                    </div>
+                </div>
+
+              
+                <div class="pareja-bloque">
+                    <div class="card-luchador" onclick="abrirFicha('viruzz')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 05</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/viruzz.avif" alt="Viruzz"></div>
+                        <div class="info-card">
+                            <h2>VIRUZZ</h2>
+                            <p>🇪🇸 ESPAÑA</p>
+                        </div>
+                    </div>
+                    <div class="badge-vs-flotante">VS</div>
+                    <div class="card-luchador" onclick="abrirFicha('gero')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 05</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/gero-arias.avif" alt="Gero Arias"></div>
+                        <div class="info-card">
+                            <h2>GERO ARIAS</h2>
+                            <p>🇦🇷 ARGENTINA</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="pareja-bloque">
+                    <div class="card-luchador" onclick="abrirFicha('alondrissa')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 06</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/alondrissa.avif" alt="Alondrissa"></div>
+                        <div class="info-card">
+                            <h2>ALONDRISSA</h2>
+                            <p>🇪🇸 ESPAÑA</p>
+                        </div>
+                    </div>
+                    <div class="badge-vs-flotante">VS</div>
+                    <div class="card-luchador" onclick="abrirFicha('angie')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 06</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/angie-velasco.avif" alt="Angie Velasco"></div>
+                        <div class="info-card">
+                            <h2>ANGIE VELASCO</h2>
+                            <p>🇦🇷 ARGENTINA</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="pareja-bloque">
+                    <div class="card-luchador" onclick="abrirFicha('lit')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 07</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/lit-killah.avif" alt="Lit Killah"></div>
+                        <div class="info-card">
+                            <h2>LIT KILLAH</h2>
+                            <p>🇦🇷 ARGENTINA</p>
+                        </div>
+                    </div>
+                    <div class="badge-vs-flotante">VS</div>
+                    <div class="card-luchador" onclick="abrirFicha('keo')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 07</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/kidd-keo.avif" alt="Kidd Keo"></div>
+                        <div class="info-card">
+                            <h2>KIDD KEO</h2>
+                            <p>🇪🇸 ESPAÑA</p>
+                        </div>
+                    </div>
+                </div>
+
+              
+                <div class="pareja-bloque">
+                    <div class="card-luchador" onclick="abrirFicha('rivers')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 08</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/samy-rivers.avif" alt="Samy Rivers"></div>
+                        <div class="info-card">
+                            <h2>SAMY RIVERS</h2>
+                            <p>🇲🇽 MÉXICO</p>
+                        </div>
+                    </div>
+                    <div class="badge-vs-flotante">VS</div>
+                    <div class="card-luchador" onclick="abrirFicha('roro')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 08</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/roro.avif" alt="Roro"></div>
+                        <div class="info-card">
+                            <h2>RORO</h2>
+                            <p>🇪🇸 ESPAÑA</p>
+                        </div>
+                    </div>
+                </div>
+
+              
+                <div class="pareja-bloque">
+                    <div class="card-luchador" onclick="abrirFicha('plex')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 09</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/plex.avif" alt="Plex"></div>
+                        <div class="info-card">
+                            <h2>PLEX</h2>
+                            <p>🇪🇸 ESPAÑA</p>
+                        </div>
+                    </div>
+                    <div class="badge-vs-flotante">VS</div>
+                    <div class="card-luchador" onclick="abrirFicha('fernan')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 09</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/fernanfloo.avif" alt="Fernanfloo"></div>
+                        <div class="info-card">
+                            <h2>FERNANFLOO</h2>
+                            <p>🇸🇻 EL SALVADOR</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="pareja-bloque">
+                    <div class="card-luchador" onclick="abrirFicha('illojuan')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 10</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/illojuan.avif" alt="IlloJuan"></div>
+                        <div class="info-card">
+                            <h2>ILLOJUAN</h2>
+                            <p>🇪🇸 ESPAÑA</p>
+                        </div>
+                    </div>
+                    <div class="badge-vs-flotante">VS</div>
+                    <div class="card-luchador" onclick="abrirFicha('grefg')">
+                        <span class="corner-tl"></span><span class="corner-tr"></span><span class="corner-bl"></span><span class="corner-br"></span>
+                        <span class="num-combate">COMBATE · 10</span>
+                        <div class="foto-boxeador"><img src="https://cdn.infolavelada.com/character-hero/thegrefg.avif" alt="TheGrefg"></div>
+                        <div class="info-card">
+                            <h2>THEGREFG</h2>
+                            <p>🇪🇸 ESPAÑA</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</main>
+
+
+<main id="vista-ficha" class="ficha-main" style="display: none;">
+    <button class="btn-volver" onclick="cerrarFicha()">← VOLVER A BOXEADORES</button>
+
+    <div class="layout-detalle">
+        <div class="columna-foto">
+            <img id="ficha-img" src="" alt="Boxeador">
+            <div class="redes-sociales">
+                <span class="badge-red">🎵 1.2M</span>
+                <span class="badge-red">📷 574K</span>
+                <span class="badge-red">▶ 288K</span>
+                <span class="badge-red">👾 234K</span>
+            </div>
+        </div>
+
+        <div class="columna-info">
+            <h1 id="ficha-nombre" class="nombre-boxeador">NOMBRE</h1>
+
+            <div class="panel-stats">
+                <div class="header-stats">
+                    <span>ESTADÍSTICAS DEL CONTENDIENTE</span>
+                </div>
+                <hr class="divisor">
+                <div class="grid-stats-datos">
+                    <div><small>PAÍS</small><p id="ficha-pais">-</p></div>
+                    <div><small>ESTATURA</small><p id="ficha-estatura">-</p></div>
+                    <div><small>PESO PACTADO</small><p id="ficha-pesopactado">-</p></div>
+                    <div><small>EDAD</small><p id="ficha-edad">-</p></div>
+                    <div><small>CATEGORÍA</small><p id="ficha-categoria">-</p></div>
+                </div>
+            </div>
+
+            <div class="panel-rival">
+                <div class="vs-label">VS</div>
+                <div class="info-rival">
+                    <img id="ficha-rival-img" src="" alt="Rival">
+                    <div>
+                        <small>SU RIVAL</small>
+                        <h4 id="ficha-rival-nombre">-</h4>
+                    </div>
+                </div>
+                <a href="combates.html" class="link-combate">
+                    <span>⚔ COMBATE<br><strong>VER EN COMBATES</strong></span>
+                    <span class="flecha">→</span>
+                </a>
+            </div>
+
+            <div class="panel-pronostico">
+                <div class="header-pronostico">
+                    <span>PRONÓSTICO DE LA COMUNIDAD</span>
+                    <small>144,4 MIL VOTOS</small>
+                </div>
+                <div class="barras-votacion">
+                    <div class="bando bando-izq">
+                        <img id="votacion-img-1" src="" alt="">
+                        <div>
+                            <p id="votacion-nom-1">-</p>
+                            <h3 id="votacion-porc-1">50%</h3>
+                        </div>
+                    </div>
+                    <div class="bando bando-der">
+                        <div>
+                            <p id="votacion-nom-2">-</p>
+                            <h3 id="votacion-porc-2">50%</h3>
+                        </div>
+                        <img id="votacion-img-2" src="" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
