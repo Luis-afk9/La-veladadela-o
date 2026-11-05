@@ -2,13 +2,18 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entradas - La Velada VI</title>
+  
+  <!-- Carga de Fuentes Oficiales -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
     <header class="navbar">
-
         <div class="nav-logo">LA VELADA</div>
         <nav class="nav-menu">
             <a href="index.html">Inicio</a>
@@ -17,7 +22,6 @@
             <a href="entradas.html">Entradas</a>
             <a href="Preguntas.html">FAQ</a>
         </nav>
-        </div>
     </header>
 
     <div class="imagenentradas">
@@ -46,27 +50,29 @@
                 </div>
                 <div id="total-general" class="live-total">Total: <span>30€</span></div>
                 <a href="asientos.html" class="buy-btn" onclick="guardarDatos('General', 30, 'general-qty')">Comprar</a>
+            </div>
+
+            <div class="ticket-card vip">
+                <h3>VIP</h3>
+                <p class="price">120€</p>
+                <ul>
+                    <li>Asientos a pie de pista</li>
+                    <li>Acceso al Backstage</li>
+                </ul>
+                <div class="quantity-selector">
+                    <label for="vip-qty">Cantidad:</label>
+                    <select id="vip-qty" name="vip-qty">
+                        <option value="1">1 Entrada</option>
+                        <option value="2">2 Entradas</option>
+                        <option value="3">3 Entradas</option>
+                        <option value="4">4 Entradas</option>
+                    </select>
                 </div>
-                <div class="ticket-card vip">
-                    <h3>VIP</h3>
-                    <p class="price">120€</p>
-                    <ul>
-                        <li>Asientos a pie de pista</li>
-                        <li>Acceso al Backstage</li>
-                    </ul>
-                    <div class="quantity-selector">
-                        <label for="vip-qty">Cantidad:</label>
-                        <select id="vip-qty" name="vip-qty">
-                            <option value="1">1 Entrada</option>
-                            <option value="2">2 Entradas</option>
-                            <option value="3">3 Entradas</option>
-                            <option value="4">4 Entradas</option>
-                        </select>
-                    </div>
-                    <a href="asientosVIP.html" style="text-decoration: none;">
-                        <button class="buy-btn">Comprar VIP</button>
-                    </a>
-                </div>
+                <a href="asientosVIP.html" style="text-decoration: none;">
+                    <button class="buy-btn">Comprar VIP</button>
+                </a>
+            </div>
         </div>
     </section>
 </body>
+</html>
