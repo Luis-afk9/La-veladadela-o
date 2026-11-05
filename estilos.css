@@ -972,3 +972,14 @@ section {
 .grid-cartelera-oficial.modo-filtrado .badge-vs-flotante {
   display: none;
 }
+
+.live-total {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.live-total span {
+  color: #e3bc73;
+}

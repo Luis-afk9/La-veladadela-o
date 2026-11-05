@@ -264,3 +264,4 @@ function actualizarContadores() {
         span.innerText = total;
     });
 }
+

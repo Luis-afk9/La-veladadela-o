@@ -45,7 +45,7 @@
                     </select>
                 </div>
                 <div id="total-general" class="live-total">Total: <span>30€</span></div>
-                <a href="asientos.html" class="buy-btn" onclick="guardarDatos('General', 30, 'general-qty')">Comprar</a>
+                    <a href="asientos.html" class="buy-btn" style="text-decoration: none;" onclick="guardarDatos('General', 30, 'general-qty')">Comprar</a>
                 </div>
                 <div class="ticket-card vip">
                     <h3>VIP</h3>
@@ -56,17 +56,31 @@
                     </ul>
                     <div class="quantity-selector">
                         <label for="vip-qty">Cantidad:</label>
-                        <select id="vip-qty" name="vip-qty">
+                        <select id="vip-qty" onchange="calcularTotal('vip', 120)">
                             <option value="1">1 Entrada</option>
                             <option value="2">2 Entradas</option>
                             <option value="3">3 Entradas</option>
                             <option value="4">4 Entradas</option>
                         </select>
                     </div>
-                    <a href="asientosVIP.html" style="text-decoration: none;">
-                        <button class="buy-btn">Comprar VIP</button>
-                    </a>
-                </div>
+                    <div id="total-vip" class="live-total">Total: <span>120€</span></div>
+                        <a href="asientosVIP.html" class="buy-btn" style="text-decoration: none;" onclick="guardarDatos('VIP', 120, 'vip-qty')">Comprar</a>
+                    </div>
         </div>
     </section>
+    <script>
+        function calcularTotal(tipo, precioUnitario) {
+            const cantidad = document.getElementById(tipo + '-qty').value;
+            const total = cantidad * precioUnitario;
+            document.getElementById('total-' + tipo).innerHTML = 'Total: <span>' + total + '€</span>';
+}
+
+        function guardarDatos(tipoEntrada, precioUnitario, selectId) {
+            const cantidad = document.getElementById(selectId).value;
+             const total = cantidad * precioUnitario;
+            localStorage.setItem('entradaSeleccionada', tipoEntrada);
+            localStorage.setItem('cantidadEntradas', cantidad);
+            localStorage.setItem('precioTotal', total);
+}
+</script>
 </body>
