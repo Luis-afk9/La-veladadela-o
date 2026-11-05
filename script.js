@@ -59,4 +59,3 @@ const intervalo = setInterval(() => {
   CuentaAtras.textContent = 
     `${dias}:${horas}:${minutos}:${segundos}`;
 }, 1000);
-
