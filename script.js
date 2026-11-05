@@ -57,6 +57,6 @@ const intervalo = setInterval(() => {
   const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
   CuentaAtras.textContent = 
-    `${dias} : ${horas} : ${minutos} : ${segundos}`;
+    `${dias}:${horas}:${minutos}:${segundos}`;
 }, 1000);
 
