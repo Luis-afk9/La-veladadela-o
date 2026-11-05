@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header class="navbar">
+
+        <div class="nav-logo">LA VELADA</div>
+        <nav class="nav-menu">
+            <a href="index.html">Inicio</a>
+            <a href="combates.html">Combates</a>
+            <a href="boxeadores.html">Boxeadores</a>
+            <a href="entradas.html">Entradas</a>
+            <a href="Preguntas.html">FAQ</a>
+        </nav>
+        </div>
+    </header>
+
+    <div class="imagenentradas">
+        <img src="imagenes/LaVeladaDelAño.jpg" alt="Imagen principal" class="tamañoentrada">
+    </div>
+
+    <section id="entradas" class="tickets-section">
+        <h2 class="section-title">Entradas</h2>
+        <h3>25 DE JULIO 19:00H CEST</h3>
+        <div class="tickets-container">
+            <div class="ticket-card">
+                <h3>General</h3>
+                <p class="price">30€</p>
+                <ul>
+                    <li>Acceso a las gradas</li>
+                    <li>Visión de las pantallas</li>
+                </ul>
+                <div class="quantity-selector">
+                    <label for="general-qty">Cantidad:</label>
+                    <select id="general-qty" onchange="calcularTotal('general', 30)">
+                        <option value="1">1 Entrada</option>
+                        <option value="2">2 Entradas</option>
+                        <option value="3">3 Entradas</option>
+                        <option value="4">4 Entradas</option>
+                    </select>
+                </div>
+                <div id="total-general" class="live-total">Total: <span>30€</span></div>
+                <a href="asientos.html" class="buy-btn" onclick="guardarDatos('General', 30, 'general-qty')">Comprar</a>
+                </div>
+                <div class="ticket-card vip">
+                    <h3>VIP</h3>
+                    <p class="price">120€</p>
+                    <ul>
+                        <li>Asientos a pie de pista</li>
+                        <li>Acceso al Backstage</li>
+                    </ul>
+                    <div class="quantity-selector">
+                        <label for="vip-qty">Cantidad:</label>
+                        <select id="vip-qty" name="vip-qty">
+                            <option value="1">1 Entrada</option>
+                            <option value="2">2 Entradas</option>
+                            <option value="3">3 Entradas</option>
+                            <option value="4">4 Entradas</option>
+                        </select>
+                    </div>
+                    <a href="asientosVIP.html" style="text-decoration: none;">
+                        <button class="buy-btn">Comprar VIP</button>
+                    </a>
+                </div>
+        </div>
+    </section>
+</body>

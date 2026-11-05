@@ -548,3 +548,144 @@ section {
     font-size: 16px;
     font-family: Arial, sans-serif;
 }
+
+.imagenentradas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0px;
+  width: 100%;
+}
+
+.tamañoentrada {
+    max-width: 1200px;
+    width: 100%;
+    max-height: 620px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Contenedor principal de la sección */
+.tickets-section {
+  padding: 80px 20px;
+  text-align: center;
+  color: white; 
+}
+
+/* Título de la sección */
+.section-title {
+  color: #e3bc73; /* Dorado similar al logo de La Velada */
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Contenedor Flex para alinear las tarjetas */
+.tickets-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap; /* Permite que las tarjetas se pongan una debajo de otra en móviles */
+}
+
+/* Estilo de cada tarjeta */
+.ticket-card {
+  background-color: #161822; /* Un tono oscuro para contrastar con el fondo negro */
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 40px 30px;
+  width: 320px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Efecto al pasar el ratón por encima */
+.ticket-card:hover {
+  transform: translateY(-10px); /* Hace que la tarjeta "suba" un poco */
+  border-color: #e3bc73;
+}
+
+.ticket-card h3 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.ticket-card .price {
+  font-size: 3rem;
+  color: #e3bc73;
+  margin: 15px 0 25px 0;
+  font-weight: bold;
+}
+
+/* Lista de beneficios */
+.ticket-card ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.ticket-card ul li {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #2c2f3d;
+  padding-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+/* Botón de compra */
+.buy-btn {
+  background-color: #e3bc73;
+  color: #000;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.buy-btn:hover {
+  background-color: #c9a45f;
+}
+
+/* Toque especial para la tarjeta VIP */
+.ticket-card.vip {
+  border: 1px solid #e3bc73;
+  box-shadow: 0 0 20px rgba(227, 188, 115, 0.15); /* Resplandor dorado */
+}
+
+/* Contenedor del selector de cantidad */
+.quantity-selector {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #2c2f3d; /* Línea separadora sutil */
+  padding-top: 15px;
+}
+
+/* Texto de "Cantidad:" */
+.quantity-selector label {
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+/* Estilo de la caja desplegable */
+.quantity-selector select {
+  background-color: #161822; /* Mismo fondo de la tarjeta */
+  color: #e3bc73;            /* Texto dorado */
+  border: 1px solid #e3bc73; /* Borde dorado */
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  font-weight: bold;
+}
+
+/* Efecto al hacer clic en el desplegable */
+.quantity-selector select:focus {
+  box-shadow: 0 0 8px rgba(227, 188, 115, 0.4);
+}
