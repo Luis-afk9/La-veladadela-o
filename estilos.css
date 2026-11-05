@@ -428,9 +428,7 @@ section {
 .boxeador:last-child:hover .stats{
     right:140%;
 }
-/* =========================================
-   ESTILOS PARA EL CUADRO DE ESTADÍSTICAS
-   ========================================= */
+
 
 /* Estado base oculto del cuadro */
 .boxeador .stats {
