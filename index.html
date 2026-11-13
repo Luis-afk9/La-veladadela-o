@@ -1,38 +1,284 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Carga de fuentes para la navbar y la caja de información -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronósticos y Votaciones - La Velada</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Bebas Neue', 'sans-serif'],
+                    },
+                    colors: {
+                        brandDark: '#0b0f19',
+                        brandCard: '#151b2b',
+                        brandGold: '#dfb56b',
+                        brandRed: '#e63946',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+        }
+        
+        .progress-bar-left {
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(90deg, #991b1b, #e63946);
+        }
+        
+        .progress-bar-right {
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(90deg, #dfb56b, #b48737);
+        }
 
-  <link rel="stylesheet" href="estilos.css">
+        .fighter-card {
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .fighter-card:hover {
+            transform: translateY(-2px);
+            border-color: #dfb56b;
+            box-shadow: 0 10px 25px -5px rgba(223, 181, 107, 0.15);
+        }
+
+        .fighter-card:active {
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d3748;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #dfb56b;
+        }
+    </style>
 </head>
+<body class="min-h-screen flex flex-col items-center pb-16">
+    <header class="navbar">
+        <div class="nav-logo">LA VELADA</div>
+        <nav class="nav-menu">
+            <a href="index.html">Inicio</a>
+            <a href="combates.html">Combates</a>
+            <a href="boxeadores.html">Boxeadores</a>
+            <a href="entradas.html">Entradas</a>
+            <a href="Preguntas.html">FAQ</a>
+        </nav>
+    </header>
 
-<body class="fondo">
+    <!-- Static Header -->
+    <header class="w-full pt-12 pb-4 px-4 text-center">
+        <div class="text-gray-300 font-semibold tracking-widest text-sm md:text-base uppercase mb-4">JULY 25, 19:00, La Cartuja Stadium, Seville</div>
+        <h1 class="text-5xl md:text-6xl font-display text-brandGold tracking-wider mb-2">PRONÓSTICOS</h1>
+        <p class="text-gray-400 font-semibold uppercase tracking-widest text-sm">Vota por tus favoritos - La Velada VI</p>
+    </header>
 
-  <header class="navbar">
-    <div class="nav-logo">LA VELADA</div>
-    <nav class="nav-menu">
-      <a href="index.html">Inicio</a>
-      <a href="combates.html">Combates</a>
-      <a href="boxeadores.html">Boxeadores</a>
-      <a href="entradas.html">Entradas</a>
-      <a href="Preguntas.html">FAQ</a>
-    </nav>
-  </header>
+    <!-- Sticky Countdown -->
+    <div class="w-full py-4 border-b border-gray-800 bg-brandDark/95 sticky top-[70px] z-40 backdrop-blur-md shadow-lg flex justify-center items-center">
+        <div class="flex justify-center items-center gap-3 md:gap-6">
+            <div class="flex flex-col items-center">
+                <div id="days" class="text-3xl md:text-5xl font-display font-bold text-white w-16 md:w-20 text-center">00</div>
+                <span class="text-xs text-gray-500 uppercase tracking-widest mt-1">Días</span>
+            </div>
+            <span class="text-2xl md:text-4xl text-brandGold font-display pb-5">:</span>
+            <div class="flex flex-col items-center">
+                <div id="hours" class="text-3xl md:text-5xl font-display font-bold text-white w-16 md:w-20 text-center">00</div>
+                <span class="text-xs text-gray-500 uppercase tracking-widest mt-1">Hrs</span>
+            </div>
+            <span class="text-2xl md:text-4xl text-brandGold font-display pb-5">:</span>
+            <div class="flex flex-col items-center">
+                <div id="minutes" class="text-3xl md:text-5xl font-display font-bold text-white w-16 md:w-20 text-center">00</div>
+                <span class="text-xs text-gray-500 uppercase tracking-widest mt-1">Min</span>
+            </div>
+            <span class="text-2xl md:text-4xl text-brandGold font-display pb-5">:</span>
+            <div class="flex flex-col items-center">
+                <div id="seconds" class="text-3xl md:text-5xl font-display font-bold text-brandRed w-16 md:w-20 text-center">00</div>
+                <span class="text-xs text-gray-500 uppercase tracking-widest mt-1">Seg</span>
+            </div>
+        </div>
+    </div>
 
-  <div class="info">
-    25 DE JULIO<br>
-    19:00H CEST<br>
-    Estadio La Cartuja, Sevilla
-  </div>
+    <!-- Fights Container -->
+    <main class="w-full max-w-5xl px-4 mt-8 flex flex-col gap-8" id="fights-container">
+        <!-- Fight cards will be injected here via JS -->
+    </main>
 
-  <div id="CuentaAtras"></div> 
+    <script>
+        // Target Date: November 20, 2026, 19:00:00 (Local time representation)
+        const targetDate = new Date('2026-11-20T19:00:00').getTime();
 
-  <script src="script.js"></script>
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+
+        // Mock Data for Fights
+        const fightsData = [
+            { id: 1, f1: { name: 'Fabiana Sevillano', loc: '🇪🇸 ESPAÑA', votes: 15420 }, f2: { name: 'La Parce', loc: '🇨🇴 COLOMBIA', votes: 12300 } },
+            { id: 2, f1: { name: 'Clersss', loc: '🇪🇸 ESPAÑA', votes: 8900 }, f2: { name: 'Natalia MX', loc: '🇲🇽 MÉXICO', votes: 18450 } },
+            { id: 3, f1: { name: 'Edu Aguirre', loc: '🇪🇸 ESPAÑA', votes: 25600 }, f2: { name: 'Gastón Edul', loc: '🇦🇷 ARGENTINA', votes: 29800 } },
+            { id: 4, f1: { name: 'Marta Díaz', loc: '🇪🇸 ESPAÑA', votes: 32100 }, f2: { name: 'Tatiana Käer', loc: '🇪🇸 ESPAÑA', votes: 14500 } },
+            { id: 5, f1: { name: 'Viruzz', loc: '🇪🇸 ESPAÑA', votes: 45000 }, f2: { name: 'Gero Arias', loc: '🇦🇷 ARGENTINA', votes: 41200 } },
+            { id: 6, f1: { name: 'Alondrissa', loc: '🇪🇸 ESPAÑA', votes: 11200 }, f2: { name: 'Angie Velasco', loc: '🇦🇷 ARGENTINA', votes: 19800 } },
+            { id: 7, f1: { name: 'Lit Killah', loc: '🇦🇷 ARGENTINA', votes: 38900 }, f2: { name: 'Kidd Keo', loc: '🇪🇸 ESPAÑA', votes: 34500 } },
+            { id: 8, f1: { name: 'Samy Rivers', loc: '🇲🇽 MÉXICO', votes: 52000 }, f2: { name: 'Roro', loc: '🇪🇸 ESPAÑA', votes: 48000 } },
+            { id: 9, f1: { name: 'Plex', loc: '🇪🇸 ESPAÑA', votes: 61000 }, f2: { name: 'Fernanfloo', loc: '🇸🇻 EL SALVADOR', votes: 75000 } },
+            { id: 10, f1: { name: 'IlloJuan', loc: '🇪🇸 ESPAÑA', votes: 89000 }, f2: { name: 'TheGrefg', loc: '🇪🇸 ESPAÑA', votes: 85500 } }
+        ];
+
+        // Retrieve voted matches from local storage
+        let votedMatches = JSON.parse(localStorage.getItem('veladaVotes')) || {};
+
+        // Apply saved votes to initial data on load
+        fightsData.forEach(fight => {
+            if (votedMatches[fight.id] === 1) fight.f1.votes += 1;
+            if (votedMatches[fight.id] === 2) fight.f2.votes += 1;
+        });
+
+        // Format numbers with dots
+        const formatNum = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+        function renderFights() {
+            const container = document.getElementById('fights-container');
+            container.innerHTML = ''; // Clear container
+
+            fightsData.forEach((fight, index) => {
+                const totalVotes = fight.f1.votes + fight.f2.votes;
+                const p1 = ((fight.f1.votes / totalVotes) * 100).toFixed(1);
+                const p2 = ((fight.f2.votes / totalVotes) * 100).toFixed(1);
+
+                const userVote = votedMatches[fight.id];
+                const isVoted = !!userVote;
+
+                // Dynamic classes and text based on vote state
+                const btn1Class = isVoted 
+                    ? (userVote === 1 ? 'border-brandRed bg-gray-900/60 shadow-[0_0_15px_rgba(230,57,70,0.2)]' : 'border-transparent opacity-40 grayscale cursor-not-allowed') 
+                    : 'border-transparent bg-gray-900/30 cursor-pointer group hover:border-brandRed hover:-translate-y-1 hover:shadow-lg';
+                    
+                const btn2Class = isVoted 
+                    ? (userVote === 2 ? 'border-brandGold bg-gray-900/60 shadow-[0_0_15px_rgba(223,181,107,0.2)]' : 'border-transparent opacity-40 grayscale cursor-not-allowed') 
+                    : 'border-transparent bg-gray-900/30 cursor-pointer group hover:border-brandGold hover:-translate-y-1 hover:shadow-lg';
+
+                const vText1 = isVoted ? (userVote === 1 ? '✓ VOTADO' : '') : '↑ VOTAR';
+                const vText2 = isVoted ? (userVote === 2 ? '✓ VOTADO' : '') : 'VOTAR ↑';
+                
+                const vStyle1 = isVoted ? (userVote === 1 ? 'opacity-100 text-brandRed' : 'opacity-0') : 'opacity-0 group-hover:opacity-100 text-brandRed';
+                const vStyle2 = isVoted ? (userVote === 2 ? 'opacity-100 text-brandGold' : 'opacity-0') : 'opacity-0 group-hover:opacity-100 text-brandGold';
+
+                const onClick1 = isVoted ? `disabled` : `onclick="castVote(${fight.id}, 1)"`;
+                const onClick2 = isVoted ? `disabled` : `onclick="castVote(${fight.id}, 2)"`;
+
+                const fightHTML = `
+                    <div class="bg-brandCard border border-gray-800 rounded-2xl p-6 md:p-8 flex flex-col w-full relative overflow-hidden shadow-lg">
+                        
+                        <div class="absolute top-0 left-0 w-full flex justify-center mt-4">
+                            <span class="bg-gray-900 text-brandGold text-xs font-bold px-3 py-1 rounded-full border border-gray-700 tracking-widest uppercase">Combate ${String(index + 1).padStart(2, '0')}</span>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row items-center justify-between mt-8 md:mt-4 gap-6 md:gap-0">
+                            
+                            <!-- Fighter 1 -->
+                            <button ${onClick1} class="flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full md:w-auto p-4 rounded-xl border transition-all duration-300 ${btn1Class}">
+                                <h3 class="text-2xl md:text-3xl font-display uppercase tracking-wide transition-colors ${isVoted && userVote === 1 ? 'text-brandRed' : 'group-hover:text-brandRed'}">${fight.f1.name}</h3>
+                                <p class="text-gray-400 text-sm md:text-base font-semibold mt-1">${fight.f1.loc}</p>
+                                <div class="mt-4 flex flex-col md:items-start items-center">
+                                    <span class="text-3xl font-bold">${p1}%</span>
+                                    <span class="text-xs text-gray-500 uppercase mt-1">${formatNum(fight.f1.votes)} Votos</span>
+                                </div>
+                                <div class="mt-4 transition-opacity text-sm font-bold tracking-widest ${vStyle1}">${vText1}</div>
+                            </button>
+
+                            <!-- VS Badge -->
+                            <div class="hidden md:flex flex-col items-center justify-center px-8 z-10">
+                                <span class="text-4xl font-display text-gray-600 italic">VS</span>
+                            </div>
+
+                            <!-- Fighter 2 -->
+                            <button ${onClick2} class="flex-1 flex flex-col items-center md:items-end text-center md:text-right w-full md:w-auto p-4 rounded-xl border transition-all duration-300 ${btn2Class}">
+                                <h3 class="text-2xl md:text-3xl font-display uppercase tracking-wide transition-colors ${isVoted && userVote === 2 ? 'text-brandGold' : 'group-hover:text-brandGold'}">${fight.f2.name}</h3>
+                                <p class="text-gray-400 text-sm md:text-base font-semibold mt-1">${fight.f2.loc}</p>
+                                <div class="mt-4 flex flex-col md:items-end items-center">
+                                    <span class="text-3xl font-bold">${p2}%</span>
+                                    <span class="text-xs text-gray-500 uppercase mt-1">${formatNum(fight.f2.votes)} Votos</span>
+                                </div>
+                                <div class="mt-4 transition-opacity text-sm font-bold tracking-widest ${vStyle2}">${vText2}</div>
+                            </button>
+
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="w-full h-3 bg-gray-800 rounded-full mt-8 flex overflow-hidden shadow-inner">
+                            <div class="progress-bar-left h-full" style="width: ${p1}%"></div>
+                            <div class="progress-bar-right h-full" style="width: ${p2}%"></div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', fightHTML);
+            });
+        }
+
+        function castVote(fightId, fighterNum) {
+            if (votedMatches[fightId]) return; // Stop double-voting
+
+            const fightIndex = fightsData.findIndex(f => f.id === fightId);
+            if (fightIndex === -1) return;
+
+            // Increment vote
+            if (fighterNum === 1) {
+                fightsData[fightIndex].f1.votes += 1;
+            } else {
+                fightsData[fightIndex].f2.votes += 1;
+            }
+
+            // Save to localStorage
+            votedMatches[fightId] = fighterNum;
+            localStorage.setItem('veladaVotes', JSON.stringify(votedMatches));
+
+            // Re-render to update UI (progress bars will transition smoothly due to CSS)
+            renderFights();
+        }
+
+        // Initial render
+        renderFights();
+    </script>
 </body>
 </html>

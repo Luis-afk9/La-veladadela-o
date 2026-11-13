@@ -264,4 +264,88 @@ function actualizarContadores() {
         span.innerText = total;
     });
 }
+ let asientosSeleccionados = [];
+// Carga e interacción de los asientos según la zona de la entrada
+document.addEventListener('DOMContentLoaded', () => {
+  // Leemos el tipo de entrada guardado (convertido a minúsculas)
+  const tipoEntrada = (localStorage.getItem('entradaSeleccionada') || '').toLowerCase();
+  const maxAsientos = parseInt(localStorage.getItem('cantidadEntradas')) || 0;
+  
+  let asientosSeleccionados = [];
 
+  const elemCantMapa = document.getElementById('cantidad-entradas-mapa');
+  const instrucciones = document.getElementById('instrucciones-asientos');
+  
+  if (elemCantMapa) elemCantMapa.textContent = maxAsientos;
+  if (!instrucciones) return; // Si no estamos en la página del mapa, detiene la ejecución
+
+  if (!tipoEntrada || maxAsientos === 0) {
+    instrucciones.textContent = "Por favor, selecciona primero tu tipo de entrada en la página principal.";
+    instrucciones.style.color = "#ff5555";
+    return;
+  }
+  
+  instrucciones.textContent = `Entrada ${tipoEntrada.toUpperCase()}: Selecciona exactamente ${maxAsientos} asiento(s).`;
+
+  function crearAsientos(filaId, cantidad, colorClase, zonaTipo) {
+    const contenedor = document.getElementById(filaId);
+    if (!contenedor) return;
+
+    contenedor.innerHTML = ''; // Limpiamos la fila antes de pintar
+    
+    for (let i = 0; i < cantidad; i++) {
+      const botonAsiento = document.createElement('button');
+      botonAsiento.type = 'button';
+      botonAsiento.classList.add('seat', colorClase);
+      
+      // SI LA ZONA DEL ASIENTO NO COINCIDE CON LA ENTRADA COMPRADA:
+      if (!tipoEntrada.includes(zonaTipo)) {
+        botonAsiento.classList.add('disabled');
+        botonAsiento.disabled = true; // Bloqueo nativo HTML para impedir cualquier clic
+      } else {
+        // SI COINCIDE: Permitimos selección
+        botonAsiento.addEventListener('click', function() {
+          if (this.classList.contains('selected')) {
+            this.classList.remove('selected');
+            asientosSeleccionados = asientosSeleccionados.filter(seat => seat !== this);
+          } else if (asientosSeleccionados.length < maxAsientos) {
+            this.classList.add('selected');
+            asientosSeleccionados.push(this);
+          } else {
+            alert(`Solo compraste ${maxAsientos} entrada(s).`);
+          }
+          validarReserva();
+        });
+      }
+      contenedor.appendChild(botonAsiento);
+    }
+  }
+
+  // Creación de zonas: General (alta/media) y VIP (baja/pista)
+  crearAsientos('row-alta', 20, 'pink', 'general');
+  crearAsientos('row-media', 16, 'blue', 'general');
+  crearAsientos('row-baja', 12, 'green', 'vip');
+  crearAsientos('row-pista', 8, 'orange', 'vip');
+
+  function validarReserva() {
+    const btnConfirmar = document.getElementById('btn-confirmar');
+    if (!btnConfirmar) return;
+
+    if (asientosSeleccionados.length === maxAsientos) {
+      btnConfirmar.disabled = false;
+      instrucciones.textContent = "¡Asientos completados! Puedes confirmar tu reserva.";
+      instrucciones.style.color = "#8bc34a";
+    } else {
+      btnConfirmar.disabled = true;
+      instrucciones.textContent = `Seleccionados ${asientosSeleccionados.length} de ${maxAsientos} asientos.`;
+      instrucciones.style.color = "#e3bc73";
+    }
+  }
+});
+
+function finalizarReserva() {
+  const total = localStorage.getItem('precioTotal');
+  const cantidad = localStorage.getItem('cantidadEntradas');
+  const tipo = localStorage.getItem('entradaSeleccionada');
+  alert(`¡Reserva confirmada con éxito!\n\nTipo: ${tipo}\nEntradas: ${cantidad}\nTotal: ${total}€`);
+}

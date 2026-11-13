@@ -1,90 +1,588 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entradas - La Velada VI</title>
-  
-  <!-- Carga de Fuentes Oficiales -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="estilos.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Purchasing Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: '#0f1626',
+                        cardbg: '#1a2035',
+                        gold: '#dfb56b',
+                        goldhover: '#cda256',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f1626; /* Navy background */
+            color: #ffffff;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Screen Transitions */
+        .screen {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .screen.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar for Arena */
+        .arena-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .arena-container::-webkit-scrollbar-track {
+            background: #1a2035;
+            border-radius: 4px;
+        }
+        .arena-container::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 4px;
+        }
+
+        /* Seating Chart Styles */
+        .seat {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background-color: #374151; /* gray-700 */
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            color: transparent;
+        }
+        .seat:hover:not(.occupied) {
+            background-color: #dfb56b;
+            transform: scale(1.1);
+        }
+        .seat.selected {
+            background-color: #dfb56b; /* Gold */
+            color: #000;
+            font-weight: bold;
+            box-shadow: 0 0 8px rgba(223, 181, 107, 0.6);
+        }
+        .seat.occupied {
+            background-color: #ef4444; /* Red */
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* Type Restrictions */
+        .seat.disabled-type {
+            opacity: 0.15;
+            cursor: not-allowed;
+            background-color: #1f2937;
+        }
+        .seat.vip-seat:not(.disabled-type):not(.occupied):not(.selected) {
+            border: 1px solid #dfb56b;
+            background-color: #2d3748;
+        }
+
+        /* Success Modal Overlay */
+        #success-modal {
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+        #success-modal.active {
+            display: flex;
+        }
+    </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col items-center">
     <header class="navbar">
         <div class="nav-logo">LA VELADA</div>
         <nav class="nav-menu">
             <a href="index.html">Inicio</a>
             <a href="combates.html">Combates</a>
             <a href="boxeadores.html">Boxeadores</a>
-            <a href="entradas.html">Entradas</a>
+            <a href="entradas.html">Entradas</a>                
             <a href="Preguntas.html">FAQ</a>
         </nav>
     </header>
 
-    <div class="imagenentradas">
-        <img src="imagenes/LaVeladaDelAño.jpg" alt="Imagen principal" class="tamañoentrada">
-    </div>
+    <!-- Navigation/Header -->
+    <header class="w-full py-6 text-center border-b border-gray-800">
+        <h1 class="text-3xl font-bold text-gold tracking-widest uppercase">Entradas</h1>
+        <p class="text-sm text-gray-400 mt-2 font-semibold">25 DE JULIO 19:00H CEST</p>
+        
+        <!-- Progress Steps -->
+        <div class="flex justify-center items-center gap-4 mt-6 text-sm">
+            <span id="step-1-indicator" class="text-gold font-bold transition-colors">1. Selección</span>
+            <span class="text-gray-600">></span>
+            <span id="step-2-indicator" class="text-gray-600 transition-colors">2. Asientos</span>
+            <span class="text-gray-600">></span>
+            <span id="step-3-indicator" class="text-gray-600 transition-colors">3. Pago</span>
+        </div>
+    </header>
 
-    <section id="entradas" class="tickets-section">
-        <h2 class="section-title">Entradas</h2>
-        <h3>25 DE JULIO 19:00H CEST</h3>
-        <div class="tickets-container">
-            <div class="ticket-card">
-                <h3>General</h3>
-                <p class="price">30€</p>
-                <ul>
-                    <li>Acceso a las gradas</li>
-                    <li>Visión de las pantallas</li>
-                </ul>
-                <div class="quantity-selector">
-                    <label for="general-qty">Cantidad:</label>
-                    <select id="general-qty" onchange="calcularTotal('general', 30)">
-                        <option value="1">1 Entrada</option>
-                        <option value="2">2 Entradas</option>
-                        <option value="3">3 Entradas</option>
-                        <option value="4">4 Entradas</option>
-                    </select>
-                </div>
-                <div id="total-general" class="live-total">Total: <span>30€</span></div>
-                    <a href="formulariogeneral.html" class="buy-btn" style="text-decoration: none;" onclick="guardarDatos('General', 30, 'general-qty')">Comprar</a>
-            </div>
-                <div class="ticket-card vip">
-                    <h3>VIP</h3>
-                    <p class="price">120€</p>
-                    <ul>
-                        <li>Asientos a pie de pista</li>
-                        <li>Acceso al Backstage</li>
+    <main class="w-full max-w-6xl p-4 flex-1 flex flex-col justify-center py-10">
+
+        <!-- ============================== -->
+        <!-- SCREEN 1: TICKET SELECTION     -->
+        <!-- ============================== -->
+        <section id="screen-1" class="screen active">
+            <div class="flex flex-col md:flex-row justify-center gap-8 md:gap-12">
+                
+                <!-- General Ticket Card -->
+                <div class="bg-cardbg border border-gray-700 rounded-xl p-8 w-full md:w-96 shadow-2xl flex flex-col">
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-bold mb-2">General</h2>
+                        <p class="text-5xl font-bold text-gold">30€</p>
+                    </div>
+                    
+                    <ul class="text-gray-300 space-y-4 mb-8 flex-1">
+                        <li class="border-b border-gray-700 pb-2">Acceso a las gradas</li>
+                        <li class="border-b border-gray-700 pb-2">Visión de las pantallas</li>
+                        <li class="border-b border-gray-700 pb-2 text-gray-500">Acceso al Backstage (No)</li>
                     </ul>
-                    <div class="quantity-selector">
-                        <label for="vip-qty">Cantidad:</label>
-                        <select id="vip-qty" onchange="calcularTotal('vip', 120)">
+
+                    <div class="flex items-center justify-between mb-6">
+                        <label for="qty-general" class="text-sm">Cantidad:</label>
+                        <select id="qty-general" onchange="updateTotal('General', 30)" class="bg-navy border border-gray-600 text-white rounded p-2 outline-none focus:border-gold">
                             <option value="1">1 Entrada</option>
                             <option value="2">2 Entradas</option>
                             <option value="3">3 Entradas</option>
                             <option value="4">4 Entradas</option>
                         </select>
                     </div>
-                    <div id="total-vip" class="live-total">Total: <span>120€</span></div>
-                        <a href="formularioVIP.html" class="buy-btn" style="text-decoration: none;" onclick="guardarDatos('VIP', 120, 'vip-qty')">Comprar</a>
-                    </div>
-    </section>
-    <script>
-        function calcularTotal(tipo, precioUnitario) {
-            const cantidad = document.getElementById(tipo + '-qty').value;
-            const total = cantidad * precioUnitario;
-            document.getElementById('total-' + tipo).innerHTML = 'Total: <span>' + total + '€</span>';
-}
 
-        function guardarDatos(tipoEntrada, precioUnitario, selectId) {
-            const cantidad = document.getElementById(selectId).value;
-             const total = cantidad * precioUnitario;
-            localStorage.setItem('entradaSeleccionada', tipoEntrada);
-            localStorage.setItem('cantidadEntradas', cantidad);
-            localStorage.setItem('precioTotal', total);
-}
-</script>
+                    <div class="text-center font-bold mb-6">
+                        <span>Total: </span>
+                        <span id="total-general" class="text-gold text-xl">30€</span>
+                    </div>
+
+                    <button onclick="selectTicket('General', 30)" class="w-full bg-gold hover:bg-goldhover text-navy font-bold py-3 rounded transition-colors shadow-[0_4px_14px_0_rgba(223,181,107,0.39)]">
+                        Comprar
+                    </button>
+                </div>
+
+                <!-- VIP Ticket Card -->
+                <div class="bg-cardbg border border-gray-700 rounded-xl p-8 w-full md:w-96 shadow-2xl flex flex-col relative overflow-hidden">
+                    <!-- Subtle VIP glow -->
+                    <div class="absolute top-0 right-0 -mr-8 -mt-8 w-24 h-24 bg-gold opacity-20 blur-2xl rounded-full"></div>
+                    
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-bold mb-2">VIP</h2>
+                        <p class="text-5xl font-bold text-gold">120€</p>
+                    </div>
+                    
+                    <ul class="text-gray-300 space-y-4 mb-8 flex-1">
+                        <li class="border-b border-gray-700 pb-2">Asientos a pie de pista</li>
+                        <li class="border-b border-gray-700 pb-2">Acceso al Backstage</li>
+                        <li class="border-b border-gray-700 pb-2 text-gold">Servicio de bar incluido</li>
+                    </ul>
+
+                    <div class="flex items-center justify-between mb-6">
+                        <label for="qty-vip" class="text-sm">Cantidad:</label>
+                        <select id="qty-vip" onchange="updateTotal('VIP', 120)" class="bg-navy border border-gray-600 text-white rounded p-2 outline-none focus:border-gold">
+                            <option value="1">1 Entrada</option>
+                            <option value="2">2 Entradas</option>
+                            <option value="3">3 Entradas</option>
+                            <option value="4">4 Entradas</option>
+                        </select>
+                    </div>
+
+                    <div class="text-center font-bold mb-6">
+                        <span>Total: </span>
+                        <span id="total-vip" class="text-gold text-xl">120€</span>
+                    </div>
+
+                    <button onclick="selectTicket('VIP', 120)" class="w-full bg-gold hover:bg-goldhover text-navy font-bold py-3 rounded transition-colors shadow-[0_4px_14px_0_rgba(223,181,107,0.39)]">
+                        Comprar
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- SCREEN 2: SEATING SELECTION    -->
+        <!-- ============================== -->
+        <section id="screen-2" class="screen">
+            <div class="flex flex-col items-center">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold mb-2">Selecciona tus asientos</h2>
+                    <p class="text-gray-400">Por favor selecciona <span id="seats-needed" class="text-gold font-bold"></span> asientos en el plano.</p>
+                </div>
+
+                <!-- Legend -->
+                <div class="flex gap-4 mb-6 text-sm">
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 bg-gray-700 rounded"></div> Libre</div>
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 bg-gold rounded"></div> Seleccionado</div>
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 bg-red-500 opacity-50 rounded"></div> Ocupado</div>
+                </div>
+                <div class="flex gap-4 mb-6 text-sm">
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 border border-gold bg-gray-800 rounded"></div> Zona VIP (Fila 1)</div>
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 bg-gray-900 opacity-30 rounded"></div> No disponible para tu entrada</div>
+                </div>
+
+                <!-- Arena Simulator -->
+                <div class="arena-container w-full max-w-4xl overflow-x-auto p-4 bg-cardbg rounded-xl border border-gray-800 shadow-xl relative">
+                    <div class="min-w-[700px] flex flex-col items-center gap-8 py-8">
+                        
+                        <!-- Norte (Top) -->
+                        <div class="text-center">
+                            <span class="text-xs text-gray-500 uppercase tracking-widest mb-2 block">Norte</span>
+                            <div id="zone-norte" class="grid grid-cols-12 gap-2"></div>
+                        </div>
+
+                        <div class="flex w-full justify-between items-center px-12">
+                            <!-- Oeste (Left) -->
+                            <div class="text-center">
+                                <span class="text-xs text-gray-500 uppercase tracking-widest mb-2 block">Preferencia</span>
+                                <div id="zone-oeste" class="grid grid-cols-3 gap-2"></div>
+                            </div>
+
+                            <!-- Stage / Ring -->
+                            <div class="w-64 h-40 bg-navy border-2 border-gold rounded-lg flex items-center justify-center relative shadow-[0_0_30px_rgba(223,181,107,0.1)]">
+                                <span class="text-gold font-bold tracking-widest uppercase">Escenario</span>
+                                <div class="absolute inset-0 bg-gold opacity-5"></div>
+                            </div>
+
+                            <!-- Este (Right) -->
+                            <div class="text-center">
+                                <span class="text-xs text-gray-500 uppercase tracking-widest mb-2 block">Fondo</span>
+                                <div id="zone-este" class="grid grid-cols-3 gap-2"></div>
+                            </div>
+                        </div>
+
+                        <!-- Sur (Bottom) -->
+                        <div class="text-center">
+                            <span class="text-xs text-gray-500 uppercase tracking-widest mb-2 block">Sur</span>
+                            <div id="zone-sur" class="grid grid-cols-12 gap-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="flex justify-between w-full max-w-4xl mt-8">
+                    <button onclick="goToScreen(1)" class="px-6 py-2 border border-gray-600 text-gray-300 hover:bg-gray-800 rounded transition-colors">Volver</button>
+                    <button id="btn-next-seats" onclick="confirmSeats()" disabled class="px-8 py-2 bg-gray-600 text-gray-400 rounded cursor-not-allowed transition-all">Continuar al Pago</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================== -->
+        <!-- SCREEN 3: CHECKOUT FORM        -->
+        <!-- ============================== -->
+        <section id="screen-3" class="screen">
+            <div class="flex flex-col lg:flex-row gap-8 max-w-5xl mx-auto">
+                
+                <!-- Form Section -->
+                <div class="flex-1 bg-cardbg p-8 rounded-xl border border-gray-800 shadow-xl">
+                    <h2 class="text-2xl font-bold mb-6 border-b border-gray-700 pb-4">Tus Datos</h2>
+                    <form id="checkout-form" onsubmit="processPayment(event)" class="space-y-5">
+                        
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1" for="fullname">Nombre Completo *</label>
+                            <input type="text" id="fullname" required class="w-full bg-navy border border-gray-700 rounded px-4 py-2 text-white focus:border-gold outline-none transition-colors">
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-1" for="email">Correo Electrónico *</label>
+                                <input type="email" id="email" required class="w-full bg-navy border border-gray-700 rounded px-4 py-2 text-white focus:border-gold outline-none transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-1" for="phone">Teléfono *</label>
+                                <input type="tel" id="phone" required class="w-full bg-navy border border-gray-700 rounded px-4 py-2 text-white focus:border-gold outline-none transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm text-gray-400 mb-1" for="dob">Fecha de Nacimiento *</label>
+                            <input type="date" id="dob" required class="w-full bg-navy border border-gray-700 rounded px-4 py-2 text-white focus:border-gold outline-none transition-colors" max="2010-01-01">
+                        </div>
+
+                        <div class="mt-6 flex items-start gap-3">
+                            <input type="checkbox" id="terms" required class="mt-1 accent-gold w-4 h-4 cursor-pointer">
+                            <label for="terms" class="text-sm text-gray-400 leading-tight">
+                                Acepto los <a href="#" class="text-gold hover:underline">Términos y Condiciones</a>, la política de privacidad y confirmo que soy mayor de edad o cuento con la autorización de mis tutores legales.
+                            </label>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="lg:w-80 h-fit bg-cardbg p-6 rounded-xl border border-gray-800 shadow-xl sticky top-4">
+                    <h3 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2">Resumen de Compra</h3>
+                    
+                    <div class="space-y-3 mb-6 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Tipo de Entrada:</span>
+                            <span id="summary-type" class="font-bold"></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Cantidad:</span>
+                            <span id="summary-qty" class="font-bold"></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Asientos:</span>
+                            <span id="summary-seats" class="font-bold text-right max-w-[120px]"></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Precio Unitario:</span>
+                            <span id="summary-unit"></span>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-700 pt-4 mb-6">
+                        <div class="flex justify-between items-end">
+                            <span class="text-gray-300">Total a Pagar:</span>
+                            <span id="summary-total" class="text-3xl font-bold text-gold"></span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between w-full gap-2">
+                        <button type="button" onclick="goToScreen(2)" class="w-1/3 px-2 py-3 border border-gray-600 text-gray-300 hover:bg-gray-800 rounded transition-colors text-sm">Atrás</button>
+                        <button type="submit" form="checkout-form" class="w-2/3 bg-gold hover:bg-goldhover text-navy font-bold py-3 rounded transition-colors shadow-[0_4px_14px_0_rgba(223,181,107,0.39)] text-sm">
+                            Confirmar Compra
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom Success/Message Modal -->
+    <div id="success-modal" class="fixed inset-0 z-50 items-center justify-center bg-black bg-opacity-70">
+        <div class="bg-cardbg border border-gray-700 rounded-xl p-8 max-w-sm w-full text-center mx-4 shadow-2xl">
+            <div class="w-16 h-16 bg-green-900 text-green-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-green-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2">¡Compra Completada!</h3>
+            <p class="text-gray-400 mb-6 text-sm">Tus entradas han sido enviadas a tu correo electrónico. ¡Disfruta del evento!</p>
+            <button onclick="resetApp()" class="w-full bg-gold hover:bg-goldhover text-navy font-bold py-2 rounded transition-colors">
+                Volver al Inicio
+            </button>
+        </div>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        // State Management
+        const state = {
+            ticketType: '',
+            ticketPrice: 0,
+            quantity: 1,
+            selectedSeats: []
+        };
+
+        // Utility: Format currency
+        const formatMoney = (amount) => `${amount}€`;
+
+        // Update Total on Screen 1 Dropdown Change
+        function updateTotal(type, price) {
+            const qtyStr = document.getElementById(`qty-${type.toLowerCase()}`).value;
+            const qty = parseInt(qtyStr, 10);
+            const total = qty * price;
+            document.getElementById(`total-${type.toLowerCase()}`).innerText = formatMoney(total);
+        }
+
+        // Action: User clicks "Comprar" on a ticket card
+        function selectTicket(type, price) {
+            const qtySelect = document.getElementById(`qty-${type.toLowerCase()}`);
+            state.ticketType = type;
+            state.ticketPrice = price;
+            state.quantity = parseInt(qtySelect.value, 10);
+            state.selectedSeats = []; // Reset seats if they go back and change quantity
+            
+            // Setup Seating Chart Requirements
+            document.getElementById('seats-needed').innerText = state.quantity;
+            generateSeatingChart(); // Regenerate chart to clear previous state
+            updateNextSeatButton();
+            
+            goToScreen(2);
+        }
+
+        // Core screen transition logic
+        function goToScreen(stepNumber) {
+            // Hide all
+            document.querySelectorAll('.screen').forEach(el => {
+                el.classList.remove('active');
+                // Use timeout to allow transition effect
+                setTimeout(() => el.style.display = 'none', 400); 
+            });
+
+            // Update Header Steps
+            ['step-1-indicator', 'step-2-indicator', 'step-3-indicator'].forEach((id, index) => {
+                const el = document.getElementById(id);
+                if(index + 1 === stepNumber) {
+                    el.className = 'text-gold font-bold transition-colors';
+                } else if(index + 1 < stepNumber) {
+                    el.className = 'text-gray-400 transition-colors';
+                } else {
+                    el.className = 'text-gray-600 transition-colors';
+                }
+            });
+
+            // Show target
+            const targetScreen = document.getElementById(`screen-${stepNumber}`);
+            setTimeout(() => {
+                targetScreen.style.display = 'block';
+                // Trigger reflow to restart transition
+                void targetScreen.offsetWidth; 
+                targetScreen.classList.add('active');
+                
+                // If heading to checkout, populate summary
+                if(stepNumber === 3) {
+                    populateSummary();
+                }
+            }, 400);
+        }
+
+        // Generate Seat Grid
+        function generateSeatingChart() {
+            // Define areas and dimensions (Cols x Rows)
+            const zones = [
+                { id: 'zone-norte', rows: 4, cols: 12, prefix: 'N' },
+                { id: 'zone-sur', rows: 4, cols: 12, prefix: 'S' },
+                { id: 'zone-oeste', rows: 8, cols: 3, prefix: 'W' },
+                { id: 'zone-este', rows: 8, cols: 3, prefix: 'E' }
+            ];
+
+            zones.forEach(zone => {
+                const container = document.getElementById(zone.id);
+                container.innerHTML = ''; // Clear existing
+                
+                const totalSeats = zone.rows * zone.cols;
+                for (let i = 1; i <= totalSeats; i++) {
+                    const seat = document.createElement('div');
+                    seat.className = 'seat';
+                    seat.dataset.seatId = `${zone.prefix}${i}`;
+                    
+                    // Determine if seat is closest to the stage (VIP)
+                    let isVip = false;
+                    if (zone.id === 'zone-norte' && i > totalSeats - zone.cols) isVip = true; // Bottom row of North
+                    else if (zone.id === 'zone-sur' && i <= zone.cols) isVip = true; // Top row of South
+                    else if (zone.id === 'zone-oeste' && i % zone.cols === 0) isVip = true; // Rightmost col of West
+                    else if (zone.id === 'zone-este' && i % zone.cols === 1) isVip = true; // Leftmost col of East
+
+                    seat.classList.add(isVip ? 'vip-seat' : 'general-seat');
+                    
+                    // Assign occupation and availability logic
+                    const isOccupied = Math.random() < 0.2;
+                    let isDisabled = isOccupied;
+                    
+                    // Restrict based on ticket type
+                    if (state.ticketType === 'General' && isVip) isDisabled = true;
+                    if (state.ticketType === 'VIP' && !isVip) isDisabled = true;
+
+                    if (isDisabled) {
+                        seat.classList.add(isOccupied ? 'occupied' : 'disabled-type');
+                    } else {
+                        // Click event for available seats
+                        seat.onclick = () => toggleSeat(seat);
+                    }
+                    
+                    container.appendChild(seat);
+                }
+            });
+        }
+
+        // Handle Seat Clicks
+        function toggleSeat(seatElement) {
+            const seatId = seatElement.dataset.seatId;
+            
+            if (seatElement.classList.contains('selected')) {
+                // Deselect
+                seatElement.classList.remove('selected');
+                state.selectedSeats = state.selectedSeats.filter(id => id !== seatId);
+            } else {
+                // Select if within limit
+                if (state.selectedSeats.length < state.quantity) {
+                    seatElement.classList.add('selected');
+                    state.selectedSeats.push(seatId);
+                } else {
+                    // Provide subtle visual feedback instead of an alert
+                    seatElement.style.backgroundColor = '#ef4444';
+                    setTimeout(() => seatElement.style.backgroundColor = '', 200);
+                }
+            }
+            updateNextSeatButton();
+        }
+
+        // Validate if enough seats are selected to proceed
+        function updateNextSeatButton() {
+            const btn = document.getElementById('btn-next-seats');
+            if (state.selectedSeats.length === state.quantity) {
+                btn.disabled = false;
+                btn.classList.remove('bg-gray-600', 'text-gray-400', 'cursor-not-allowed');
+                btn.classList.add('bg-gold', 'text-navy', 'hover:bg-goldhover', 'font-bold', 'shadow-[0_4px_14px_0_rgba(223,181,107,0.39)]');
+            } else {
+                btn.disabled = true;
+                btn.className = 'px-8 py-2 bg-gray-600 text-gray-400 rounded cursor-not-allowed transition-all mt-4';
+            }
+        }
+
+        function confirmSeats() {
+            if(state.selectedSeats.length === state.quantity) {
+                goToScreen(3);
+            }
+        }
+
+        // Populate Order Summary on Checkout Page
+        function populateSummary() {
+            document.getElementById('summary-type').innerText = `Entrada ${state.ticketType}`;
+            document.getElementById('summary-qty').innerText = state.quantity;
+            document.getElementById('summary-seats').innerText = state.selectedSeats.join(', ');
+            document.getElementById('summary-unit').innerText = formatMoney(state.ticketPrice);
+            document.getElementById('summary-total').innerText = formatMoney(state.ticketPrice * state.quantity);
+        }
+
+        // Handle Form Submission
+        function processPayment(e) {
+            e.preventDefault(); // Prevent page reload
+            
+            // Basic Form Check (HTML5 validation handles the rest)
+            const form = document.getElementById('checkout-form');
+            if(!form.checkValidity()) {
+                return;
+            }
+
+            // Show custom success modal
+            const modal = document.getElementById('success-modal');
+            modal.classList.add('active');
+        }
+
+        // Reset application to start
+        function resetApp() {
+            document.getElementById('success-modal').classList.remove('active');
+            document.getElementById('checkout-form').reset();
+            
+            // Reset Dropdowns
+            document.getElementById('qty-general').value = '1';
+            document.getElementById('qty-vip').value = '1';
+            updateTotal('General', 30);
+            updateTotal('VIP', 120);
+
+            // Back to screen 1
+            goToScreen(1);
+        }
+    </script>
 </body>
 </html>
