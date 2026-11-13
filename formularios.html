@@ -164,4 +164,44 @@
         }
     </script>
 </body>
+<!-- Footer -->
+<footer class="legal-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h3>LA VELADA VI</h3>
+            <p>Proyecto web desarrollado con fines educativos (Formación Profesional).</p>
+        </div>
+        <div class="footer-links">
+            <h4>Información Legal</h4>
+            <ul>
+                <li><button onclick="abrirLegal('aviso')">Aviso Legal</button></li>
+                <li><button onclick="abrirLegal('privacidad')">Política de Privacidad</button></li>
+                <li><button onclick="abrirLegal('cookies')">Política de Cookies</button></li>
+                <li><button onclick="abrirLegal('condiciones')">Condiciones de Compra</button></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 La Velada VI — Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" class="cookie-banner" style="display: none;">
+    <div class="cookie-content">
+        <p>Utilizamos cookies y <code>localStorage</code> para recordar tus votaciones y gestionar la compra de entradas. <button onclick="abrirLegal('cookies')" class="link-cookie">Leer más</button>.</p>
+        <button onclick="aceptarCookies()" class="btn-aceptar-cookies">Aceptar</button>
+    </div>
+</div>
+
+<!-- Modal Legal -->
+<div id="modal-legal" class="modal-legal" style="display: none;">
+    <div class="modal-legal-content">
+        <div class="modal-legal-header">
+            <h3 id="modal-legal-titulo">Título</h3>
+            <button onclick="cerrarLegal()" class="btn-cerrar-legal">&times;</button>
+        </div>
+        <div id="modal-legal-cuerpo" class="modal-legal-body"></div>
+    </div>
+</div>
 </html>
