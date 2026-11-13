@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registre i Acreditacions - La Velada VI</title>
+  
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-logo">LA VELADA</div>
+        <nav class="nav-menu">
+            <a href="index.html">Inicio</a>
+            <a href="combates.html">Combates</a>
+            <a href="boxeadores.html">Boxeadores</a>
+            <a href="entradas.html">Entradas</a>
+            <a href="formularios.html">Solicitudes</a>
+            <a href="Preguntas.html">FAQ</a>
+        </nav>
+        <button id="btn-theme" class="btn-theme" onclick="toggleTheme()" title="Cambiar tema">🌙</button>
+    </header>
+
+    <main class="form-container-main">
+        <div class="header-form">
+            <h1>SOL·LICITUDS I PARTICIPACIÓ</h1>
+            <p>SELECCIONA EL TIPUS DE REGISTRE PER A LA PROPERA EDICIÓ DE LA VELADA</p>
+        </div>
+
+        <form id="formInscripcio" class="card-formulario">
+           
+            <div class="form-group">
+                <label for="tipusRegistre" class="form-label">Tipus de Sol·licitud</label>
+                <select id="tipusRegistre" class="form-select" onchange="canviarFormulari()">
+                    <option value="" disabled selected>-- Selecciona una opció --</option>
+                    <option value="casting">Càsting de Boxejadors/es</option>
+                    <option value="staff">Voluntariat i Staff</option>
+                    <option value="premsa">Acreditació de Premsa i Mitjans</option>
+                </select>
+            </div>
+
+            <hr class="divisor-form">
+
+           
+            <div class="grid-2-col">
+                <div class="form-group">
+                    <label for="nom" class="form-label">Nom Completa</label>
+                    <input type="text" id="nom" class="form-input" placeholder="El teu nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="cognoms" class="form-label">Cognoms</label>
+                    <input type="text" id="cognoms" class="form-input" placeholder="Els teus cognoms" required>
+                </div>
+            </div>
+
+            <div class="grid-2-col">
+                <div class="form-group">
+                    <label for="email" class="form-label">Correu Electrònic</label>
+                    <input type="email" id="email" class="form-input" placeholder="exemple@correu.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefon" class="form-label">Telèfon de Contacte</label>
+                    <input type="tel" id="telefon" class="form-input" placeholder="+34 600 000 000" required>
+                </div>
+            </div>
+
+            <div id="seccioCasting" class="seccio-dinamica" style="display: none;">
+                <h3 class="subtitol-form">Dades per al Càsting</h3>
+                <div class="grid-3-col">
+                    <div class="form-group">
+                        <label for="xarxes" class="form-label">Canals / Xarxes (Twitch, YT, TikTok...)</label>
+                        <input type="text" id="xarxes" class="form-input" placeholder="@usuari">
+                    </div>
+                    <div class="form-group">
+                        <label for="alcada" class="form-label">Alçada (cm)</label>
+                        <input type="number" id="alcada" class="form-input" placeholder="175">
+                    </div>
+                    <div class="form-group">
+                        <label for="pes" class="form-label">Pes Actual (kg)</label>
+                        <input type="number" id="pes" class="form-input" placeholder="70">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="experienciaBoxa" class="form-label">Experiència prèvia en esports de contacte</label>
+                    <textarea id="experienciaBoxa" class="form-textarea" rows="3" placeholder="Descriu la teva experiència en boxa o arts marcials (si en tens)..."></textarea>
+                </div>
+            </div>
+
+
+            <div id="seccioStaff" class="seccio-dinamica" style="display: none;">
+                <h3 class="subtitol-form">Dades per a Voluntariat i Staff</h3>
+                <div class="grid-2-col">
+                    <div class="form-group">
+                        <label for="rolInteres" class="form-label">Àrea d'Interès</label>
+                        <select id="rolInteres" class="form-select">
+                            <option value="logistica">Logística i Control d'Accessos</option>
+                            <option value="atencio">Atenció al Públic / VIP</option>
+                            <option value="produccio">Suport a Producció i Escenari</option>
+                            <option value="sanitari">Suport Sanitari / Primers Auxilis</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="disponibilitat" class="form-label">Disponibilitat Horària</label>
+                        <select id="disponibilitat" class="form-select">
+                            <option value="completa">Jornada Completa (Esdeveniment + Assajos)</option>
+                            <option value="dia-esdeveniment">Només Dia de l'Esdeveniment</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+         
+            <div id="seccioPremsa" class="seccio-dinamica" style="display: none;">
+                <h3 class="subtitol-form">Acreditació de Mitjans</h3>
+                <div class="grid-2-col">
+                    <div class="form-group">
+                        <label for="mitja" class="form-label">Nom del Mitjà / Cadena</label>
+                        <input type="text" id="mitja" class="form-input" placeholder="Ex: El Periódico, Marca, Canal propi...">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipusMitja" class="form-label">Tipus de Mitjà</label>
+                        <select id="tipusMitja" class="form-select">
+                            <option value="premsa-escrita">Premsa Escrita / Digital</option>
+                            <option value="radio-tv">Ràdio / Televisió</option>
+                            <option value="creador">Creador de Contingut (Streamer/Podcaster)</option>
+                            <option value="fotografia">Fotografia Oficial</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="enllacMitja" class="form-label">Enllaç a Cobertures Anteriors o Lloc Web</label>
+                    <input type="url" id="enllacMitja" class="form-input" placeholder="https://...">
+                </div>
+            </div>
+
+         
+            <button type="submit" class="btn-enviar-form">ENVIAR SOL·LICITUD</button>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        function canviarFormulari() {
+            const opcio = document.getElementById('tipusRegistre').value;
+            
+          
+            document.getElementById('seccioCasting').style.display = 'none';
+            document.getElementById('seccioStaff').style.display = 'none';
+            document.getElementById('seccioPremsa').style.display = 'none';
+
+          
+            if (opcio === 'casting') {
+                document.getElementById('seccioCasting').style.display = 'block';
+            } else if (opcio === 'staff') {
+                document.getElementById('seccioStaff').style.display = 'block';
+            } else if (opcio === 'premsa') {
+                document.getElementById('seccioPremsa').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-/* --- CONFIGURACIÓN GENERAL --- */
+
 body {
   margin: 0;
   background: #0a0f1c;
@@ -7,7 +7,7 @@ body {
   overflow-x: hidden;
 }
 
-/* --- BARRA DE NAVEGACIÓN CENTRADA --- */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -61,7 +61,7 @@ body {
   box-shadow: 0 0 12px rgba(245, 210, 106, 0.3);
 }
 
-/* --- SECCIONES Y LANDING (INDEX) --- */
+
 section {
   padding: 80px 20px;
   max-width: 1000px;
@@ -107,7 +107,7 @@ section {
   text-align: center;
 }
 
-/* --- PÁGINA DE COMBATES --- */
+
 .titulo-combates {
   text-align: center;
   margin-top: 120px;
@@ -134,33 +134,33 @@ section {
     border-radius: 20px;
 }
 
-/* Contenedor principal de la sección */
+
 .tickets-section {
   padding: 80px 20px;
   text-align: center;
   color: white; 
 }
 
-/* Título de la sección */
+
 .section-title {
-  color: #e3bc73; /* Dorado similar al logo de La Velada */
+  color: #e3bc73;
   font-size: 2.5rem;
   margin-bottom: 50px;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
-/* Contenedor Flex para alinear las tarjetas */
+
 .tickets-container {
   display: flex;
   justify-content: center;
   gap: 40px;
-  flex-wrap: wrap; /* Permite que las tarjetas se pongan una debajo de otra en móviles */
+  flex-wrap: wrap; 
 }
 
-/* Estilo de cada tarjeta */
+
 .ticket-card {
-  background-color: #161822; /* Un tono oscuro para contrastar con el fondo negro */
+  background-color: #161822; 
   border: 1px solid #333;
   border-radius: 12px;
   padding: 40px 30px;
@@ -168,9 +168,9 @@ section {
   transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-/* Efecto al pasar el ratón por encima */
+
 .ticket-card:hover {
-  transform: translateY(-10px); /* Hace que la tarjeta "suba" un poco */
+  transform: translateY(-10px);
   border-color: #e3bc73;
 }
 
@@ -186,7 +186,7 @@ section {
   font-weight: bold;
 }
 
-/* Lista de beneficios */
+
 .ticket-card ul {
   list-style: none;
   padding: 0;
@@ -201,7 +201,7 @@ section {
   font-size: 1.1rem;
 }
 
-/* Botón de compra */
+
 .buy-btn {
   background-color: #e3bc73;
   color: #000;
@@ -219,33 +219,32 @@ section {
   background-color: #c9a45f;
 }
 
-/* Toque especial para la tarjeta VIP */
+
 .ticket-card.vip {
   border: 1px solid #e3bc73;
-  box-shadow: 0 0 20px rgba(227, 188, 115, 0.15); /* Resplandor dorado */
+  box-shadow: 0 0 20px rgba(227, 188, 115, 0.15); 
 }
 
-/* Contenedor del selector de cantidad */
+
 .quantity-selector {
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid #2c2f3d; /* Línea separadora sutil */
+  border-top: 1px solid #2c2f3d; 
   padding-top: 15px;
 }
 
-/* Texto de "Cantidad:" */
+
 .quantity-selector label {
   font-size: 1.1rem;
   color: #fff;
 }
 
-/* Estilo de la caja desplegable */
 .quantity-selector select {
-  background-color: #161822; /* Mismo fondo de la tarjeta */
-  color: #e3bc73;            /* Texto dorado */
-  border: 1px solid #e3bc73; /* Borde dorado */
+  background-color: #161822; 
+  color: #e3bc73;            
+  border: 1px solid #e3bc73; 
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 1rem;
@@ -254,7 +253,7 @@ section {
   font-weight: bold;
 }
 
-/* Efecto al hacer clic en el desplegable */
+
 .quantity-selector select:focus {
   box-shadow: 0 0 8px rgba(227, 188, 115, 0.4);
 }
@@ -363,7 +362,7 @@ section {
   text-shadow: 0 0 10px #0099ff, 0 0 20px #0099ff;
 }
 
-/* TARJETAS ESTADÍSTICAS (HOVER) */
+
 .boxeador .stats {
   position: absolute;
   top: 50%;
@@ -430,7 +429,7 @@ section {
   transform: translateY(-50%);
 }
 
-/* --- PÁGINA PREGUNTAS (FAQ) --- */
+
 .faq {
   max-width: 1100px;
   margin: 140px auto 80px;
@@ -506,10 +505,10 @@ section {
   pointer-events: none;
 }
 
-/* --- PÁGINA DE BOXEADORES (BOXEADORES.HTML) --- */
+
 .boxeadores-main {
   max-width: 1550px;
-  margin: 120px auto 60px; /* Margen para no solaparse con la navbar */
+  margin: 120px auto 60px; 
   padding: 0 20px;
 }
 
@@ -533,7 +532,7 @@ section {
   margin-top: 5px;
 }
 
-/* ESTRUCTURA FLEX PARA PERMITIR STICKY CORRECTAMENTE */
+
 .layout-boxeadores {
   display: flex;
   align-items: flex-start;
@@ -544,7 +543,7 @@ section {
   flex: 1;
 }
 
-/* FILTROS LATERALES CON STICKY */
+
 .sidebar-filtros {
   width: 240px;
   min-width: 240px;
@@ -556,7 +555,7 @@ section {
 
   position: -webkit-sticky;
   position: sticky;
-  top: 100px; /* Distancia respecto al tope al hacer scroll */
+  top: 100px; 
   z-index: 30;
 }
 
@@ -613,7 +612,7 @@ section {
   font-size: 10px;
 }
 
-/* BARRA DE ORDENAR */
+
 .bar-ordenar {
   background: rgba(6, 12, 34, 0.85);
   border: 1px solid rgba(216, 180, 90, 0.3);
@@ -647,7 +646,7 @@ section {
   font-weight: bold;
 }
 
-/* REJILLA DE PAREJAS (2 BLOQUES POR FILA = 4 TARJETAS) */
+
 .grid-cartelera-oficial {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -697,7 +696,7 @@ section {
   transform: translateY(-4px);
 }
 
-/* ESQUINAS DORADAS */
+
 .corner-tl, .corner-tr, .corner-bl, .corner-br {
   position: absolute;
   width: 8px;
@@ -765,7 +764,7 @@ section {
   letter-spacing: 1px;
 }
 
-/* VISTA DETALLE DE CADA BOXEADOR (FICHA) */
+
 .ficha-main {
   max-width: 1250px;
   margin: 120px auto 60px;
@@ -962,7 +961,6 @@ section {
   font-size: 22px;
 }
 
-/* MODO FILTRADO FLUIDO */
 .grid-cartelera-oficial.modo-filtrado {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -971,4 +969,212 @@ section {
 
 .grid-cartelera-oficial.modo-filtrado .badge-vs-flotante {
   display: none;
+}
+
+.live-total {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.live-total span {
+  color: #e3bc73;
+}
+
+.form-container-main {
+  max-width: 900px;
+  margin: 120px auto 60px;
+  padding: 0 20px;
+}
+
+.header-form {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.header-form h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 55px;
+  color: #f5e9d4;
+  letter-spacing: 4px;
+  margin: 0;
+}
+
+.header-form p {
+  color: rgba(245, 233, 212, 0.6);
+  letter-spacing: 2px;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.card-formulario {
+  background: rgba(6, 12, 34, 0.85);
+  border: 1px solid rgba(216, 180, 90, 0.3);
+  border-radius: 8px;
+  padding: 35px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
+}
+
+.subtitol-form {
+  font-family: 'Cinzel', serif;
+  color: #d8b45a;
+  font-size: 20px;
+  margin: 20px 0 15px 0;
+  border-bottom: 1px solid rgba(216, 180, 90, 0.2);
+  padding-bottom: 8px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: #d8b45a;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 10px rgba(216, 180, 90, 0.2);
+}
+
+.form-select option {
+  background: #081033;
+  color: #fff;
+}
+
+.grid-2-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.grid-3-col {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 20px;
+}
+
+.divisor-form {
+  border: 0;
+  height: 1px;
+  background: rgba(216, 180, 90, 0.2);
+  margin: 25px 0;
+}
+
+.btn-enviar-form {
+  width: 100%;
+  background: linear-gradient(180deg, #d8b45a 0%, #a68434 100%);
+  color: #000;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 2px;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.btn-enviar-form:hover {
+  background: linear-gradient(180deg, #f5e9d4 0%, #d8b45a 100%);
+  box-shadow: 0 0 20px rgba(216, 180, 90, 0.4);
+}
+
+.btn-theme {
+  background: transparent;
+  border: 1px solid rgba(245, 210, 106, 0.4);
+  color: #f5d26a;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-theme:hover {
+  background: rgba(245, 210, 106, 0.2);
+  transform: scale(1.05);
+}
+
+
+body.light-mode {
+  background-color: #f4f5f7 !important;
+  color: #1a1a1a !important;
+}
+
+body.light-mode .navbar {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid rgba(216, 180, 90, 0.4) !important;
+}
+
+body.light-mode .nav-menu a {
+  color: #1a1a1a !important;
+}
+
+body.light-mode .nav-menu a:hover {
+  color: #b8860b !important;
+  background: rgba(216, 180, 90, 0.15) !important;
+}
+
+body.light-mode h1, 
+body.light-mode h2, 
+body.light-mode .nombre-boxeador {
+  color: #1a1a1a !important;
+}
+
+body.light-mode .card-luchador,
+body.light-mode .sidebar-filtros,
+body.light-mode .panel-stats,
+body.light-mode .panel-rival,
+body.light-mode .panel-pronostico,
+body.light-mode .card-formulario,
+body.light-mode .pregunta {
+  background: #ffffff !important;
+  border-color: rgba(216, 180, 90, 0.4) !important;
+  color: #1a1a1a !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+body.light-mode .btn-filtro {
+  background: #f0f0f0 !important;
+  color: #1a1a1a !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .btn-filtro.active {
+  background: #d8b45a !important;
+  color: #000 !important;
+}
+
+body.light-mode .form-input, 
+body.light-mode .form-select, 
+body.light-mode .form-textarea {
+  background: #f9f9f9 !important;
+  color: #1a1a1a !important;
+  border: 1px solid #ccc !important;
+}
+
+body.light-mode .faq-btn {
+  color: #1a1a1a !important;
 }

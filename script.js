@@ -238,3 +238,31 @@ function actualizarContadores() {
         span.innerText = total;
     });
 }
+/* ==========================================
+   LÓGICA CAMBIO DE TEMA (DARK / LIGHT MODE)
+=========================================== */
+function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById("btn-theme");
+
+    body.classList.toggle("light-mode");
+
+    if (body.classList.contains("light-mode")) {
+        if (btn) btn.innerText = "☀️";
+        localStorage.setItem("theme", "light");
+    } else {
+        if (btn) btn.innerText = "🌙";
+        localStorage.setItem("theme", "dark");
+    }
+}
+
+// Cargar la preferencia guardada al iniciar la página
+document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+    const btn = document.getElementById("btn-theme");
+
+    if (savedTheme === "light") {
+        document.body.classList.add("light-mode");
+        if (btn) btn.innerText = "☀️";
+    }
+});
