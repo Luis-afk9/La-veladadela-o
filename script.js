@@ -266,3 +266,43 @@ document.addEventListener("DOMContentLoaded", () => {
         if (btn) btn.innerText = "☀️";
     }
 });
+
+const textosLegales = {
+    aviso: {
+        titulo: "Aviso Legal",
+        cuerpo: "<p>Proyecto desarrollado con fines estrictamente educativos (Formación Profesional). No existe actividad comercial real.</p>"
+    },
+    privacidad: {
+        titulo: "Política de Privacidad",
+        cuerpo: "<p>Los datos introducidos en los formularios (nombre, email, fecha de nacimiento) no se envían a ningún servidor; se procesan únicamente en el navegador para simular el proceso de compra.</p>"
+    },
+    cookies: {
+        titulo: "Política de Cookies",
+        cuerpo: "<p>Utilizamos <code>localStorage</code> para recordar tus selecciones de asientos y evitar que votes dos veces en el mismo combate.</p>"
+    },
+    condiciones: {
+        titulo: "Condiciones de Compra",
+        cuerpo: "<p>Límite de 4 entradas por usuario. Evento simulado para el 25 de julio a las 19:00h en el Estadio La Cartuja.</p>"
+    }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (!localStorage.getItem("cookiesAceptadas")) {
+        document.getElementById("cookie-banner").style.display = "block";
+    }
+});
+
+function aceptarCookies() {
+    localStorage.setItem("cookiesAceptadas", "true");
+    document.getElementById("cookie-banner").style.display = "none";
+}
+
+function abrirLegal(tipo) {
+    document.getElementById("modal-legal-titulo").innerText = textosLegales[tipo].titulo;
+    document.getElementById("modal-legal-cuerpo").innerHTML = textosLegales[tipo].cuerpo;
+    document.getElementById("modal-legal").style.display = "flex";
+}
+
+function cerrarLegal() {
+    document.getElementById("modal-legal").style.display = "none";
+}

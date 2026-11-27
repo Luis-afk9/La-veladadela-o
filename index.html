@@ -80,13 +80,14 @@
             <a href="combates.html">Combates</a>
             <a href="boxeadores.html">Boxeadores</a>
             <a href="entradas.html">Entradas</a>
+            <a href="formularios.html">Solicitudes</a>
             <a href="Preguntas.html">FAQ</a>
         </nav>
     </header>
 
     <!-- Static Header -->
     <header class="w-full pt-12 pb-4 px-4 text-center">
-        <div class="text-gray-300 font-semibold tracking-widest text-sm md:text-base uppercase mb-4">JULY 25, 19:00, La Cartuja Stadium, Seville</div>
+        <div class="text-gray-300 font-semibold tracking-widest text-sm md:text-base uppercase mb-4">25 de julio, 19:00, La Estadio la Cartuja, Sevilla</div>
         <h1 class="text-5xl md:text-6xl font-display text-brandGold tracking-wider mb-2">PRONÓSTICOS</h1>
         <p class="text-gray-400 font-semibold uppercase tracking-widest text-sm">Vota por tus favoritos - La Velada VI</p>
     </header>
@@ -115,18 +116,6 @@
             </div>
         </div>
     </div>
-  <header class="navbar">
-    <div class="nav-logo">LA VELADA</div>
-    <nav class="nav-menu">
-      <a href="index.html">Inicio</a>
-      <a href="combates.html">Combates</a>
-      <a href="boxeadores.html">Boxeadores</a>
-      <a href="entradas.html">Entradas</a>
-      <a href="formularios.html">Solicitudes</a>
-      <a href="Preguntas.html">FAQ</a>
-    </nav>
-    <button id="btn-theme" class="btn-theme" onclick="toggleTheme()" title="Cambiar tema">🌙</button>
-  </header>
 
     <!-- Fights Container -->
     <main class="w-full max-w-5xl px-4 mt-8 flex flex-col gap-8" id="fights-container">
@@ -294,4 +283,44 @@
     </script>
     <script src="script.js"></script>
 </body>
+<!-- Footer -->
+<footer class="legal-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h3>LA VELADA VI</h3>
+            <p>Proyecto web desarrollado con fines educativos (Formación Profesional).</p>
+        </div>
+        <div class="footer-links">
+            <h4>Información Legal</h4>
+            <ul>
+                <li><button onclick="abrirLegal('aviso')">Aviso Legal</button></li>
+                <li><button onclick="abrirLegal('privacidad')">Política de Privacidad</button></li>
+                <li><button onclick="abrirLegal('cookies')">Política de Cookies</button></li>
+                <li><button onclick="abrirLegal('condiciones')">Condiciones de Compra</button></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 La Velada VI — Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" class="cookie-banner" style="display: none;">
+    <div class="cookie-content">
+        <p>Utilizamos cookies y <code>localStorage</code> para recordar tus votaciones y gestionar la compra de entradas. <button onclick="abrirLegal('cookies')" class="link-cookie">Leer más</button>.</p>
+        <button onclick="aceptarCookies()" class="btn-aceptar-cookies">Aceptar</button>
+    </div>
+</div>
+
+<!-- Modal Legal -->
+<div id="modal-legal" class="modal-legal" style="display: none;">
+    <div class="modal-legal-content">
+        <div class="modal-legal-header">
+            <h3 id="modal-legal-titulo">Título</h3>
+            <button onclick="cerrarLegal()" class="btn-cerrar-legal">&times;</button>
+        </div>
+        <div id="modal-legal-cuerpo" class="modal-legal-body"></div>
+    </div>
+</div>
 </html>

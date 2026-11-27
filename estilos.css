@@ -1178,3 +1178,122 @@ body.light-mode .form-textarea {
 body.light-mode .faq-btn {
   color: #1a1a1a !important;
 }
+
+/* Footer Legal */
+.legal-footer {
+    background-color: #0b0f19;
+    border-top: 1px solid #1f2937;
+    color: #9ca3af;
+    padding: 3rem 1.5rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    margin-top: auto;
+}
+.footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    border-bottom: 1px solid #1f2937;
+    padding-bottom: 2rem;
+}
+.footer-brand h3 {
+    color: #dfb56b;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+.footer-brand p { font-size: 0.85rem; max-width: 300px; }
+.footer-links h4 {
+    color: #fff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+.footer-links ul { list-style: none; padding: 0; margin: 0; }
+.footer-links li { margin-bottom: 0.5rem; }
+.footer-links button {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0;
+}
+.footer-links button:hover { color: #dfb56b; }
+.footer-bottom {
+    max-width: 1000px;
+    margin: 1.5rem auto 0;
+    text-align: center;
+    font-size: 0.75rem;
+}
+
+/* Cookie Banner */
+.cookie-banner {
+    position: fixed;
+    bottom: 0; left: 0; width: 100%;
+    background: #151b2b;
+    border-top: 1px solid #dfb56b;
+    color: #d1d5db;
+    padding: 1rem;
+    z-index: 9999;
+}
+.cookie-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    gap: 1rem;
+}
+.link-cookie { background: none; border: none; color: #dfb56b; text-decoration: underline; cursor: pointer; }
+.btn-aceptar-cookies {
+    background: #dfb56b;
+    color: #0b0f19;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Modal Legal */
+.modal-legal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+.modal-legal-content {
+    background: #151b2b;
+    border: 1px solid #374151;
+    width: 90%; max-width: 600px;
+    max-height: 80vh;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+}
+.modal-legal-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #374151;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-legal-header h3 { color: #dfb56b; margin: 0; font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem;}
+.btn-cerrar-legal { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+.modal-legal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    color: #d1d5db;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
