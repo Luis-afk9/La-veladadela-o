@@ -5,12 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preguntas Frecuentes - La Velada VI</title>
 
-    <!-- Carga de Bebas Neue y Cinzel -->
+    <!-- Carga de Bebas Neue, Cinzel y Montserrat (para lectura limpia en respuestas) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="estilos.css">
+
+    <!-- Estilos exclusivos para el interior de las respuestas -->
+    <style>
+        .faq-respuesta {
+            padding: 15px 25px 28px 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: #d0d5dd;
+            letter-spacing: 0.3px;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            animation: fadeInRespuesta 0.3s ease;
+        }
+
+        @keyframes fadeInRespuesta {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .faq-respuesta p {
+            margin: 0 0 12px 0;
+        }
+
+        .faq-respuesta p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-dato-destacado {
+            color: #e5c158;
+            font-weight: 600;
+        }
+
+        /* Enlaces de streaming (Pregunta 2) */
+        .faq-links {
+            list-style: none;
+            padding: 0;
+            margin: 14px 0 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-links a {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1.5px;
+            color: #d4af37;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(212, 175, 55, 0.6);
+            padding-bottom: 3px;
+            transition: all 0.25s ease;
+        }
+
+        .faq-links a:hover {
+            color: #fff3c4;
+            border-bottom-color: #fff3c4;
+            transform: translateX(4px);
+        }
+
+        /* Cuadrícula de combates (Pregunta 3) */
+        .lista-combates-faq {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 24px;
+            margin-top: 18px;
+        }
+
+        .combate-item-faq {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 2px solid rgba(212, 175, 55, 0.45);
+            border-radius: 0 4px 4px 0;
+            font-family: 'Cinzel', serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            color: #eef1f5;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .combate-item-faq:hover {
+            background: rgba(212, 175, 55, 0.08);
+            border-left-color: #d4af37;
+        }
+
+        .combate-num {
+            color: #d4af37;
+            font-weight: 700;
+            min-width: 22px;
+        }
+
+        /* Caja del Main Event (Pregunta 4) */
+        .main-event-box {
+            margin-top: 14px;
+            padding: 14px 20px;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.14) 0%, rgba(212, 175, 55, 0.02) 100%);
+            border-left: 3px solid #d4af37;
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: #f3d266;
+        }
+
+        /* Adaptación a móvil para los combates */
+        @media (max-width: 700px) {
+            .lista-combates-faq {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -31,43 +147,104 @@
 
     <h1>PREGUNTAS FRECUENTES</h1>
     <div class="faq-glow"></div>
+
+    <!-- PREGUNTA 1 -->
     <div class="pregunta">
         <button class="faq-btn">
             ¿CUÁNDO ES LA VELADA DEL AÑO VI?
             <span>+</span>
         </button>
+        <div class="faq-respuesta" style="display: none;">
+            <p>La Velada del Año VI se celebra el <span class="faq-dato-destacado">viernes 20 de noviembre de 2026</span> a partir de las <span class="faq-dato-destacado">19:00h</span> (horario de España peninsular).</p>
+        </div>
     </div>
 
+    <!-- PREGUNTA 2 -->
     <div class="pregunta">
         <button class="faq-btn">
             ¿DÓNDE SE PUEDE VER ONLINE?
             <span>+</span>
         </button>
+        <div class="faq-respuesta" style="display: none;">
+            <p>En directo y de forma gratuita en los canales oficiales de Ibai Llanos, en:</p>
+            <ul class="faq-links">
+                <li><a href="#" onclick="return false;">TWITCH.TV/IBAI</a></li>
+                <li><a href="#" onclick="return false;">YOUTUBE.COM/@IBAILLANOS</a></li>
+                <li><a href="#" onclick="return false;">TIKTOK.COM/@IBAILLANOS</a></li>
+            </ul>
+        </div>
     </div>
 
+    <!-- PREGUNTA 3 -->
     <div class="pregunta">
         <button class="faq-btn">
             ¿CUÁLES SON LOS COMBATES CONFIRMADOS?
             <span>+</span>
         </button>
+        <div class="faq-respuesta" style="display: none;">
+            <p>Estos son los combates confirmados de La Velada del Año VI:</p>
+            <div class="lista-combates-faq">
+                <div class="combate-item-faq"><span class="combate-num">1</span> LA PARCE VS FABIANA SEVILLANO</div>
+                <div class="combate-item-faq"><span class="combate-num">2</span> CLERSSS VS NATALIA MX</div>
+                <div class="combate-item-faq"><span class="combate-num">3</span> EDU AGUIRRE VS GASTÓN EDUL</div>
+                <div class="combate-item-faq"><span class="combate-num">4</span> MARTA DÍAZ VS TATIANA KÄER</div>
+                <div class="combate-item-faq"><span class="combate-num">5</span> VIRUZZ VS GERO ARIAS</div>
+                <div class="combate-item-faq"><span class="combate-num">6</span> ALONDRISSA VS ANGIE VELASCO</div>
+                <div class="combate-item-faq"><span class="combate-num">7</span> LIT KILLAH VS KIDD KEO</div>
+                <div class="combate-item-faq"><span class="combate-num">8</span> SAMY RIVERS VS RORO</div>
+                <div class="combate-item-faq"><span class="combate-num">9</span> PLEX VS FERNANFLOO</div>
+                <div class="combate-item-faq"><span class="combate-num">10</span> ILLOJUAN VS THEGREFG</div>
+            </div>
+        </div>
     </div>
 
+    <!-- PREGUNTA 4 -->
     <div class="pregunta">
         <button class="faq-btn">
             ¿CUÁL ES EL MAIN EVENT?
             <span>+</span>
         </button>
+        <div class="faq-respuesta" style="display: none;">
+            <p>El combate estelar de la noche es:</p>
+            <div class="main-event-box">ILLOJUAN VS THEGREFG</div>
+        </div>
     </div>
 
+    <!-- PREGUNTA 5 -->
     <div class="pregunta">
         <button class="faq-btn">
             ¿HAY ENTRADAS DISPONIBLES?
             <span>+</span>
         </button>
+        <div class="faq-respuesta" style="display: none;">
+            <p><span class="faq-dato-destacado">No, las entradas están agotadas.</span> Si se abriesen nuevas, lo avisaríamos por nuestros canales oficiales.</p>
+        </div>
     </div>
 
 </section>
+
 <script src="script.js"></script>
+<script>
+    // Lógica para abrir y cerrar las preguntas del FAQ
+    document.querySelectorAll('.faq-btn').forEach(boton => {
+        boton.addEventListener('click', () => {
+            const preguntaDiv = boton.parentElement;
+            const respuesta = preguntaDiv.querySelector('.faq-respuesta');
+            const icono = boton.querySelector('span');
+            const estaAbierta = respuesta.style.display === 'block';
+
+            if (estaAbierta) {
+                respuesta.style.display = 'none';
+                icono.textContent = '+';
+                preguntaDiv.classList.remove('activa');
+            } else {
+                respuesta.style.display = 'block';
+                icono.textContent = '×';
+                preguntaDiv.classList.add('activa');
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
